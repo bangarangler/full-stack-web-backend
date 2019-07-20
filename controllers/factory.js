@@ -21,3 +21,13 @@ exports.postAddFactory = (req,res,next) => {
     console.log(err)
   })
 }
+
+exports.getFactory = (req,res,next) => {
+  Factory.find({},(err, factories) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(factories)
+    }
+  })
+}

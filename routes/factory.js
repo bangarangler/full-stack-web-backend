@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.post('/add-factory', factoryController.postAddFactory);
 
+router.get('/get-factory', factoryController.getFactory);
+
 module.exports = router;

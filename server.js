@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require('cors')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 //const MongoDBStore = require("connect-mongodb-session")(session);
@@ -17,12 +18,18 @@ const server = express();
 //collection: "sessions"
 //});
 
+const factoryRoutes = require('./routes/factory.js')
+
+server.use(cors())
 server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json())
+
+server.use(factoryRoutes)
 
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(result => {
-    server.listen(3000);
+    server.listen(4000);
   })
   .catch(err => {
     console.log(err);

@@ -1,5 +1,23 @@
-const mongoose = require("mongoose");
+const Factory = require('../models/factory.js')
 
-const Schema = mongoose.Schema;
+exports.postAddFactory = (req,res,next) => {
+  const factName = req.body.factName;
+  const childGen = req.body.childGen;
+  const lRange = req.body.lRange;
+  const hRange = req.body.hRange;
+  const children = req.body.children;
 
-const factorySchema = new Schema({});
+  const factory = new Factory({
+    factName: factName,
+    childGen: childGen,
+    lRange: lRange,
+    hRange: hRange,
+    children: children
+  })
+
+  factory.save().then(res => {
+    console.log('Created Factory')
+  }).catch(err => {
+    console.log(err)
+  })
+}

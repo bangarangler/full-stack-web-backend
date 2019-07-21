@@ -4,19 +4,15 @@ const express = require("express");
 const cors = require('cors')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-//const MongoDBStore = require("connect-mongodb-session")(session);
+const csrf = require('csurf')
 
-//const User = require('./models/user.js');
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
   process.env.MONGO_PW
 }@full-stack-web-backend-hf8uf.mongodb.net/root`;
 
 const server = express();
-//const store = new MongoDBStore({
-//uri: MONGODB_URI,
-//collection: "sessions"
-//});
+const csrfProtection = csrf();
 
 const factoryRoutes = require('./routes/factory.js')
 
@@ -25,6 +21,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json())
 
 server.use(factoryRoutes)
+server.use(csrfProtection)
 
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })

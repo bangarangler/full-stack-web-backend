@@ -8,29 +8,22 @@ const factorySchema = new Schema({
     required: true
   },
   childGen: {
-    type: String,
+    type: Number,
     required: true
   },
   lRange: {
-    type: String,
+    type: Number,
     required: true
   },
   hRange: {
-    type: String,
+    type: Number,
     required: true
   },
   children: {
     type: [Number],
     required: true
   },
-  //factoryId : {
-    //type: Schema.Types.ObjectId,
-    //required: true
-  //}
 });
 
-//factorySchema.methods.removeFactory = function(factoryId) {
-  //if (factoryId.toString() === )
-//}
 
 module.exports = mongoose.model("Factory", factorySchema)

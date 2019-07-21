@@ -31,3 +31,15 @@ exports.getFactory = (req,res,next) => {
     }
   })
 }
+
+exports.removeFactory = (req,res,next) => {
+  id = req.body._id
+  console.log(id)
+  Factory.deleteOne({"_id": id}, function(err) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.status(200).json("DELETED")
+    }
+  })
+}

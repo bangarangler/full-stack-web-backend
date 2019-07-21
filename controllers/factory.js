@@ -33,13 +33,27 @@ exports.getFactory = (req,res,next) => {
 }
 
 exports.removeFactory = (req,res,next) => {
-  id = req.body._id
+  const id = req.body._id
+  //id = req.params._id
   console.log(id)
   Factory.deleteOne({"_id": id}, function(err) {
     if (err) {
       console.log(err)
     } else {
       res.status(200).json("DELETED")
+    }
+  })
+}
+
+exports.updateFactoryName = (req,res,next) => {
+  const id = req.body._id;
+  const newName = req.body.newName;
+  console.log(id, newName)
+  Factory.updateOne({"_id": id}, {$set: {factName: newName}}, function(err) {
+    if (err) {
+    return res.status(500).json("Internal Error")
+    } else {
+      res.status(200).json(`Name Updated, ${newName}`)
     }
   })
 }

@@ -12,4 +12,6 @@ router.get('/get-factory', factoryController.getFactory);
 
 router.delete('/remove-factory', factoryController.removeFactory);
 
+router.put('/update-factory', factoryController.updateFactoryName);
+
 module.exports = router;

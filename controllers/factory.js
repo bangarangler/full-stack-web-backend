@@ -15,10 +15,21 @@ exports.postAddFactory = (req,res,next) => {
     children: children
   })
 
-  factory.save().then(res => {
-    console.log('Created Factory')
-  }).catch(err => {
-    console.log(err)
+  //factory.save().then(res => {
+    //console.log('Created Factory')
+    //console.log("res", res)
+    //res.json(`id: ${res._id}`)
+  //}).catch(err => {
+    //console.log(err)
+  //})
+  factory.save((err, factory) => {
+    if (err) {
+      console.log(`err, ${err}`)
+      res.status(500)
+    } else {
+      console.log(`factory ${factory}`)
+      res.status(200).json(`${factory}`)
+    }
   })
 }
 
@@ -33,6 +44,7 @@ exports.getFactory = (req,res,next) => {
 }
 
 exports.removeFactory = (req,res,next) => {
+  console.log(req.body)
   const id = req.body._id
   //id = req.params._id
   console.log(id)
@@ -40,20 +52,21 @@ exports.removeFactory = (req,res,next) => {
     if (err) {
       console.log(err)
     } else {
-      res.status(200).json("DELETED")
+      res.status(200).json(`DELETED, ${id}`)
     }
   })
 }
 
-exports.updateFactoryName = (req,res,next) => {
-  const id = req.body._id;
+exports.updateFactoryName = async (req,res,next) => {
+  console.log(req.body)
+  const id = await req.body._id;
   const newName = req.body.newName;
   console.log(id, newName)
   Factory.updateOne({"_id": id}, {$set: {factName: newName}}, function(err) {
     if (err) {
     return res.status(500).json("Internal Error")
     } else {
-      res.status(200).json(`Name Updated, ${newName}`)
+      res.status(200).json(`Name Updated, ${newName}, ${id}`)
     }
   })
 }

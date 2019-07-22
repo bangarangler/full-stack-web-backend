@@ -11,6 +11,10 @@ router.post('/add-factory', [
   check("lRange").matches([0-9]).withMessage("Must Enter a Number for High Range, Low Range, and Children to Generate").isAlphanumeric()
 ], factoryController.postAddFactory);
 
+router.get('/', (req,res,next) => {
+  res.send(200).json("Testing")
+})
+
 router.get('/get-factory', factoryController.getFactory);
 
 router.delete('/remove-factory', factoryController.removeFactory);

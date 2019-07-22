@@ -46,10 +46,11 @@ server.use(bodyParser.json())
 server.use(factoryRoutes, cors())
 server.use(csrfProtection)
 
+const port = process.env.PORT || 4000;
 mongoose
   .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(result => {
-    server.listen(4000);
+    server.listen(port);
   })
   .catch(err => {
     console.log(err);

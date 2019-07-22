@@ -23,7 +23,10 @@ const factorySchema = new Schema({
     type: [Number],
     required: true
   },
+  ident: {
+    type: String,
+    required: true
+  }
 });
 
-
-module.exports = mongoose.model("Factory", factorySchema)
+module.exports = mongoose.model("Factory", factorySchema);

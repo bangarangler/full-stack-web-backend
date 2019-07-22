@@ -8,7 +8,7 @@ exports.postAddFactory = (req, res, next) => {
   const lRange = req.body.lRange;
   const hRange = req.body.hRange;
   const children = req.body.children;
-  const id = req.body.id;
+  const ident = req.body.ident;
 
   const factory = new Factory({
     factName: factName,
@@ -16,7 +16,7 @@ exports.postAddFactory = (req, res, next) => {
     lRange: lRange,
     hRange: hRange,
     children: children,
-    id: id
+    ident: ident
   });
 
   //factory.save().then(res => {
@@ -52,7 +52,7 @@ exports.getFactory = (req, res, next) => {
 
 exports.removeFactory = (req, res, next) => {
   console.log(req.body);
-  const id = req.body._id;
+  const id = req.body.ident;
   //id = req.params._id
   console.log(id);
   Factory.deleteOne({ _id: id }, function(err) {
@@ -66,7 +66,7 @@ exports.removeFactory = (req, res, next) => {
 
 exports.updateFactoryName = async (req, res, next) => {
   console.log(req.body);
-  const id = await req.body._id;
+  const id = await req.body.ident;
   const newName = req.body.newName;
   console.log(id, newName);
   await Factory.updateOne(

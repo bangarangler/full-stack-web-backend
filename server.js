@@ -7,10 +7,10 @@ const mongoose = require("mongoose");
 const csrf = require('csurf')
 
 
-//const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
-  //process.env.MONGO_PW
-//}@full-stack-web-backend-hf8uf.mongodb.net/root`;
-const MONGODB_URI = `mongodb://<dbuser>:<dbpassword>@ds253537.mlab.com:53537/heroku_k33x53h4`
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
+  process.env.MONGO_PW
+}@full-stack-web-backend-hf8uf.mongodb.net/root`;
+//const MONGODB_URI = `mongodb://<dbuser>:<dbpassword>@ds253537.mlab.com:53537/heroku_k33x53h4`
 
 const server = express();
 //server.options('*', cors())

@@ -68,7 +68,7 @@ exports.updateFactoryName = async (req,res,next) => {
   const id = await req.body._id;
   const newName = req.body.newName;
   console.log(id, newName)
-  Factory.updateOne({"_id": id}, {$set: {factName: newName}}, function(err) {
+  await Factory.updateOne({"_id": id}, {$set: {factName: newName}}, function(err) {
     if (err) {
     return res.status(500).json("Internal Error")
     } else {

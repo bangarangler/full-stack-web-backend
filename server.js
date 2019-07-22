@@ -13,15 +13,19 @@ const csrf = require('csurf')
 const MONGODB_URI = `mongodb://<dbuser>:<dbpassword>@ds253537.mlab.com:53537/heroku_k33x53h4`
 
 const server = express();
+const corsOptions = {
+  origin: 'https://full-stack-web-challenge.herokuapp.com/',
+  optionsSuccessStatus: 200
+}
 const csrfProtection = csrf();
 
 const factoryRoutes = require('./routes/factory.js')
 
-server.use(cors())
+server.use(cors(corsOptions))
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json())
 
-server.use(factoryRoutes)
+server.use(factoryRoutes, cors())
 server.use(csrfProtection)
 
 mongoose

@@ -5,6 +5,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const csrf = require("csurf");
+const helmet = require('helmet')
 
 //const MONGODB_URI = `mongodb+srv:${process.env.MONGO_USER}:${
 //process.env.MONGO_PW
@@ -47,6 +48,7 @@ server.use(function(req, res, next) {
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+server.use(helmet())
 
 server.use(factoryRoutes, cors());
 server.use(csrfProtection);

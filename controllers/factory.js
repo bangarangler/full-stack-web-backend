@@ -70,7 +70,7 @@ exports.updateFactoryName = async (req, res, next) => {
   const newName = req.body.newName;
   console.log(id, newName);
   await Factory.updateOne(
-    { _id: id },
+    { ident: id },
     { $set: { factName: newName } },
     function(err) {
       if (err) {

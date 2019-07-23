@@ -19,13 +19,6 @@ exports.postAddFactory = (req, res, next) => {
     ident: ident
   });
 
-  //factory.save().then(res => {
-  //console.log('Created Factory')
-  //console.log("res", res)
-  //res.json(`id: ${res._id}`)
-  //}).catch(err => {
-  //console.log(err)
-  //})
   factory.save((err, factory) => {
     if (err) {
       if (!errors.isEmpty()) {
@@ -53,7 +46,6 @@ exports.getFactory = (req, res, next) => {
 exports.removeFactory = (req, res, next) => {
   console.log(req.body);
   const id = req.body.ident;
-  //id = req.params._id
   console.log(id);
   Factory.deleteOne({ ident: id }, function(err) {
     if (err) {

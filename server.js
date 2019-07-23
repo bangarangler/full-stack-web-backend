@@ -10,7 +10,6 @@ const csrf = require("csurf");
 //process.env.MONGO_PW
 //}@full-stack-web-backend-hf8uf.mongodb.net/root`;
 
-//const MONGODB_URI = `mongodb://<dbuser>:<dbpassword>@ds253537.mlab.com:53537/heroku_k33x53h4`
 
 const MONGODB_URI =
   process.env.MONGODB_URI ||
@@ -19,16 +18,10 @@ const MONGODB_URI =
   }@full-stack-web-backend-hf8uf.mongodb.net/root`;
 
 const server = express();
-//server.options('*', cors())
-//const corsOptions = {
-//origin: 'https://full-stack-web-challenge.herokuapp.com/',
-//optionsSuccessStatus: 200
-//}
 const csrfProtection = csrf();
 
 const factoryRoutes = require("./routes/factory.js");
 
-//server.use(cors(corsOptions))
 server.options("/*", function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");

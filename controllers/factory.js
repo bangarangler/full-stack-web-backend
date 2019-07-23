@@ -55,7 +55,7 @@ exports.removeFactory = (req, res, next) => {
   const id = req.body.ident;
   //id = req.params._id
   console.log(id);
-  Factory.deleteOne({ _id: id }, function(err) {
+  Factory.deleteOne({ ident: id }, function(err) {
     if (err) {
       console.log(err);
     } else {

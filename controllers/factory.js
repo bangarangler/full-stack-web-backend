@@ -66,7 +66,7 @@ exports.removeFactory = (req, res, next) => {
 
 exports.updateFactoryName = async (req, res, next) => {
   console.log(req.body);
-  const id = await req.body.ident;
+  const id =  req.body.ident;
   const newName = req.body.newName;
   console.log(id, newName);
   await Factory.updateOne(
